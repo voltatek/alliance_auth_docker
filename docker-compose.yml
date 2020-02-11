@@ -1,5 +1,16 @@
 version: '3'
 services:
+
+  watchtower:
+    image: v2tec/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - srv
+    restart: unless-stopped
+    command: --interval 30 --cleanup --label-enable
+
   traefik:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
@@ -24,10 +35,23 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./conf/traefik/traefik.toml:/traefik.toml
       - ./conf/traefik/servers.toml:/servers.toml
-      - ./conf/opt/docker/traefik/acme.json:/acme.json
+      - ./conf/docker/traefik/acme.json:/acme.json
     container_name: traefik
     restart: unless-stopped
     command: --docker --insecureSkipVerify=true
+
+  traefik-cert-extractor:
+    labels:
+      - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
+    image: danielhuisman/traefik-certificate-extractor
+    container_name: traefik-cert-extractor
+    volumes:
+      - ./conf/traefik:/app/data
+      - ./conf/traefik/certs:/app/certs
+    networks:
+      - aa-network
+    restart: unless-stopped
 
 
   nginx:
