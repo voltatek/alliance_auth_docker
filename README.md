@@ -2,7 +2,7 @@ Included:
 * Dockerfile
 * Docker-compose
 
-## Contents
+# Contents
 - [Installing Mysql](#Installing-Mysql)
 - [Docker Stack](#Installing-Docker-Stack)
 - [Updating Auth](#Updating-Auth)
@@ -10,9 +10,9 @@ Included:
 
 
 
-## Installation
+# Installation
 
-### Installing Mysql:
+## Installing Mysql:
 Rather than storing the database in a docker - Install MySQL in a local instalation
 
 ```bash
@@ -37,7 +37,7 @@ CREATE DATABASE DATABASE CHARACTER SET utf8mb4;
 GRANT ALL PRIVILEGES ON DATABASE . * TO 'USER'@'localhost';
 exit;
 ```
-### Installing Docker Stack:
+## Installing Docker Stack:
 
 Clone the Repo to your own server
 ```
@@ -64,7 +64,7 @@ run ```docker exec -it aa-auth python manage.py createsuperuser```
 
 And we are done!
 
-### Updating Auth:
+## Updating Auth:
 
 Run the following commands in the following order
 
@@ -78,15 +78,15 @@ Run the following commands in the following order
 
 
 
-### Installing Plugins:
+## Installing Plugins:
 
 To install plugins run the following commands depending on which plugin you are using
 
-## Git
+### Git
 ```docker exec -it aa-auth pip install git+https://github.com/##########```
 Replacing # with the location of the git repo
 
-## PIP
+### PIP
 ```docker exec -it aa-auth pip install ########```
 Replacing # with the plugin pip name
 
