@@ -7,7 +7,7 @@ services:
       - "traefik.local.frontend.entryPoints=http"
       - "traefik.port=8888"
       - "traefik.backend=traefik"
-      - "traefik.docker.network=web"
+      - "traefik.docker.network=aa-network"
     image: library/traefik:1.7.16
     ports:
       - 80:80
