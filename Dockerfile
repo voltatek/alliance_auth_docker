@@ -11,7 +11,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 RUN python3 -m venv /home/allianceserver/venv/auth/
 #RUN source /home/allianceserver/venv/auth/bin/activate
 RUN pip install --upgrade pip
-RUN pip install wheel gunicorn flower requests-oauthlib==0.8.0 django==2.2.1 django-celery-beat==1.1.0
+RUN pip install wheel gunicorn flower
 RUN pip install allianceauth
 RUN cd /home/allianceserver && allianceauth start myauth
 COPY /conf/local.py /home/allianceserver/myauth/myauth/settings/local.py
