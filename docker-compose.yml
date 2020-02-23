@@ -31,7 +31,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./conf/traefik/traefik.toml:/traefik.toml
-      - ./conf/traefik/servers.toml:/servers.toml
       - ./conf/docker/traefik/acme.json:/acme.json
     container_name: traefik
     restart: unless-stopped
