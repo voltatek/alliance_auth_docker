@@ -82,6 +82,8 @@ Run the following commands in the following order
 
 ```docker exec -it aa-auth python manage.py migrate```
 
+```docker exec -it aa-auth python manage.py collectstatic```
+
 ```docker exec -it aa-auth supervisorctl restart myauth:```
 
 
