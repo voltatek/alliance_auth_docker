@@ -46,6 +46,14 @@ git clone https://github.com/milleruk/alliance_auth_docker.git
 
 edit the ```conf/local.py``` for your eve api and mysql info and reflect the mysql info in docker-compose.yml
 
+### Plugins
+Please see here for CORE features and services
+
+Features - https://allianceauth.readthedocs.io/en/latest/features/
+
+Services - https://allianceauth.readthedocs.io/en/latest/installation/services/
+
+
 edit ```.env``` to reflect the subdomain and domain name you are choosing for auth to be installed on
 
 run ```docker-compose up -d``` to bring the docker stack online
