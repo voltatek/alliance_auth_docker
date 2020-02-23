@@ -28,9 +28,6 @@ services:
     expose:
       - 8888
     network_mode: host
-    environment:
-      - CF_API_EMAIL=${CLOUDFLARE_API_EMAIL}
-      - CF_API_KEY=${CLOUDFLARE_API_KEY}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./conf/traefik/traefik.toml:/traefik.toml
@@ -59,7 +56,7 @@ services:
     container_name: aa-nginx
     labels:
       - "traefik.frontend.rule=Host:${SUB_DOMAIN}.${DOMAIN}"
-      - "traefik.docker.network=millerdev_srv"
+      - "traefik.docker.network=aa-network"
       - "traefik.port=80"
     volumes:
       - ./conf/local.conf:/etc/nginx/conf.d/default.conf
@@ -93,13 +90,9 @@ services:
     #command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic && /usr/bin/supervisord"
     ports:
       - 5555:5555
-    environment:
-      DB_HOST: "${DB_HOST}"
-      DB_NAME: "${DB_NAME}"
-      DB_USER: "${DB_USER}"
-      DB_PASSWORD: "${DB_PASSWORD}"
     volumes:
       - ./conf/local.py:/home/allianceserver/myauth/myauth/settings/local.py
+      - ./templates:/home/allianceserver//myauth/myauth/templates/
       - static-volume:/var/www/myauth/static
     depends_on:
      - redis

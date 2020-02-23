@@ -2,7 +2,7 @@
 from .base import *
 
 # Django App Secretkey change if you want
-SECRET_KEY = ''
+SECRET_KEY = 'REPLACETHISSHIT'
 
 # Change this to change the name of the auth site
 SITE_NAME = 'Alliance Auth'
@@ -14,7 +14,7 @@ INSTALLED_APPS += [
 'allianceauth.services.modules.mumble',
 ]
 
-
+#### ADD YOUR OWN LOCAL DATABASE DETAILS HERE
 DATABASES['default'] = {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'aauth',
