@@ -1,4 +1,4 @@
-FROM python:3.6.6-jessie
+FROM python:3.7.3-jessie
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libmysqlclient-dev \
     unzip \
