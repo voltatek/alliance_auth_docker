@@ -1,6 +1,6 @@
 FROM python:3.7.7-buster
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    libmysqlclient-dev \
+    libmariadb-dev \
     unzip \
     git \
     curl \
