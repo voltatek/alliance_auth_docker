@@ -6,8 +6,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
     libssl-dev \
     libbz2-dev \
-    libffi-dev \
-    supervisor
+    libffi-dev
 RUN python3 -m venv /home/allianceserver/venv/auth/
 #RUN source /home/allianceserver/venv/auth/bin/activate
 RUN pip install --upgrade pip
@@ -18,6 +17,8 @@ COPY /conf/local.py /home/allianceserver/myauth/myauth/settings/local.py
 RUN cd /home/allianceserver && allianceauth update myauth
 RUN mkdir -p /var/www/myauth/static
 RUN python /home/allianceserver/myauth/manage.py collectstatic
+RUN pip install supervisor
+RUN pip install -U git+https://github.com/shaib/supervisor-stdout.git@patch-1
 COPY /conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 WORKDIR /home/allianceserver/myauth
 EXPOSE 8000
