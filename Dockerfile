@@ -19,7 +19,7 @@ RUN mkdir -p /var/www/myauth/static
 RUN python /home/allianceserver/myauth/manage.py collectstatic
 RUN pip install supervisor
 RUN pip install -U git+https://github.com/shaib/supervisor-stdout.git@patch-1
-COPY /conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY /conf/supervisord.conf /usr/local/etc/supervisord.conf
 WORKDIR /home/allianceserver/myauth
 EXPOSE 8000
 EXPOSE 5555
