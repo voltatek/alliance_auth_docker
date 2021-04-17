@@ -23,4 +23,4 @@ COPY /conf/supervisord.conf /usr/local/etc/supervisord.conf
 WORKDIR /home/allianceserver/myauth
 EXPOSE 8000
 EXPOSE 5555
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/local/bin/supervisord"]
