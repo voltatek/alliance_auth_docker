@@ -3,40 +3,26 @@ Included:
 * Docker-compose
 
 # Contents
-- [Installing Mysql](#Installing-Mysql)
 - [Docker Stack](#Installing-Docker-Stack)
 - [Updating Auth](#Updating-Auth)
 - [Installing Plugins](#Installing-Plugins)
 
 
-
 # Installation
 
-## Installing Mysql:
-Rather than storing the database in a docker - Install MySQL in a local instalation
+## Image
 
-```bash
-sudo apt-get install mysql-server mysql-client libmysqlclient-dev
-```
-Start the mysql server
+The docker image is ready to use if you understand docker yourself and
 
-```bash
-sudo service mysql start
-```
+``image: milleruk/allianceauth``
 
-Create database and user for AA
+## Traefik
+This Repo assumes you have Traefik installed and understand how to use it.
 
-```bash
-sudo mysql -u root
-```
-Alter USER for DB Username and DATABSE for Database name and replace PASSWORD with your own password
+I have created a stack ready for production here and
 
-```sql
-CREATE USER 'USER'@'localhost' IDENTIFIED BY 'PASSWORD';
-CREATE DATABASE DATABASE CHARACTER SET utf8mb4;
-GRANT ALL PRIVILEGES ON DATABASE . * TO 'USER'@'localhost';
-exit;
-```
+https://github.com/milleruk/TraefikStack/
+
 ## Installing Docker Stack:
 
 Clone the Repo to your own server
