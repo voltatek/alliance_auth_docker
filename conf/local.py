@@ -9,6 +9,7 @@ SITE_NAME = 'Alliance Auth'
 
 DEBUG = False
 # Add any additional apps to this list. Pre-Populated with some Apps
+
 INSTALLED_APPS += [
 'allianceauth.services.modules.discord',
 'allianceauth.services.modules.mumble',
@@ -20,17 +21,29 @@ DATABASES['default'] = {
     'NAME': 'aauth',
     'USER': 'aauth',
     'PASSWORD': 'PASSWORD',
-    'HOST': '127.0.0.1',
+    'HOST': 'auth_mysql',
     'PORT': '3306',
 }
 
+# Register an application at https://developers.eveonline.com for Authentication
+# & API Access and fill out these settings. Be sure to set the callback URL
+# to https://example.com/sso/callback substituting your domain for example.com
+# Logging in to auth requires the publicData scope (can be overridden through the
+# LOGIN_TOKEN_SCOPES setting). Other apps may require more (see their docs).
 
 ESI_SSO_CLIENT_ID = ''
 ESI_SSO_CLIENT_SECRET = ''
 ESI_SSO_CALLBACK_URL = ''
+ESI_USER_CONTACT_EMAIL = ''    # A server maintainer that CCP can contact in case of issues.
 
 
-REGISTRATION_VERIFY_EMAIL = False
+# By default emails are validated before new users can log in.
+# It's recommended to use a free service like SparkPost or Elastic Email to send email.
+# https://www.sparkpost.com/docs/integrations/django/
+# https://elasticemail.com/resources/settings/smtp-api/
+# Set the default from email to something like 'noreply@example.com'
+# Email validation can be turned off by uncommenting the line below. This can break some services.
+# REGISTRATION_VERIFY_EMAIL = False
 EMAIL_HOST = ''
 EMAIL_PORT = 587
 EMAIL_HOST_USER = ''
