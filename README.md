@@ -32,7 +32,7 @@ git clone https://github.com/milleruk/alliance_auth_docker.git
 
 edit the ```conf/local.py``` for your eve api and mysql info and reflect the mysql info in docker-compose.yml
 
-edit ```setup.sql`` to reflect the database settings you have added above, This is a start up script that will create the base database on MYSQL Docker startup
+edit ```setup.sql``` to reflect the database settings you have added above, This is a start up script that will create the base database on MYSQL Docker startup
 
 ### Plugins
 Please see here for CORE features and services
