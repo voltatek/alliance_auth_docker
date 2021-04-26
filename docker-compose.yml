@@ -2,18 +2,17 @@ version: '3.8'
 services:
 
   auth_mysql:
-    image: library/mariadb:latest
+    image: mysql
     container_name: auth_mysql
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --default-authentication-plugin=mysql_native_password]
     volumes:
-      - ${PWD}/mysql:/var/lib/mysql
-      - ${PWD}/mysql/custom:/etc/mysql/conf.d
+      - ./mysql:/var/lib/mysql
+      - ./mysql/custom:/etc/mysql/conf.d
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
       - MYSQL_ROOT_PASSWORD=${AA_DB_ROOT_PASSWORD}
-    ports:
-      - 127.0.0.1:3306:3306
     networks:
-      - srv
+      - aa-network
     healthcheck:
       test: ["CMD", "mysqladmin", "-uroot", "-proot", "-h", "localhost", "ping"]
       interval: 5s
