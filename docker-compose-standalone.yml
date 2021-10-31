@@ -7,14 +7,14 @@ services:
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --default-authentication-plugin=mysql_native_password]
     volumes:
       - ./mysql:/var/lib/mysql
-      - ./mysql/custom:/etc/mysql/conf.d
+      - ./mysql-custom:/etc/mysql/conf.d
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
       - MYSQL_ROOT_PASSWORD=${AA_DB_ROOT_PASSWORD}
     networks:
       - aa-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "-uroot", "-proot", "-h", "localhost", "ping"]
+      test: ["CMD", "mysqladmin", "-uroot", "-p`${AA_DB_ROOT_PASSWORD}`", "-h", "localhost", "ping"]
       interval: 5s
       timeout: 10s
       retries: 3
@@ -73,7 +73,7 @@ services:
       DB_PASSWORD: "${AA_DB_PASSWORD}"
     volumes:
       - ./conf/local.py:/home/allianceserver/myauth/myauth/settings/local.py
-      - ./templates:/home/allianceserver//myauth/myauth/templates/
+      - ./templates:/home/allianceserver/myauth/myauth/templates/
       - static-volume:/var/www/myauth/static
     depends_on:
      - redis
